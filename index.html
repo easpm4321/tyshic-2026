@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桃高資訊社 第六屆官網</title>
+
+    <!-- Font Awesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts 科技感字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #12121a;
+            --grid-color: rgba(255, 255, 255, 0.05);
+            --card-bg: rgba(25, 25, 38, 0.75);
+            --border-color: rgba(138, 127, 255, 0.25);
+            --primary-accent: #a78bfa;
+            --primary-glow: #8b5cf6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --font-code: 'Fira Code', monospace;
+            --font-main: 'Noto Sans TC', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 36px 36px;
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 頂部導覽列 Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(18, 18, 26, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-code);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-accent);
+            text-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
+        }
+
+        /* Hero 主視覺區塊 (Home 中間) */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem 2rem;
+            gap: 2rem;
+        }
+
+        .hero-text {
+            flex: 1.2;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+            color: #ffffff;
+        }
+
+        .typed-word {
+            color: var(--primary-accent);
+            border-right: 3px solid var(--primary-accent);
+            animation: blink 0.8s infinite;
+            padding-right: 4px;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .hero-description {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 540px;
+            line-height: 1.8;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+        }
+
+        /* 社群圖示列 */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+            background: rgba(167, 139, 250, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 0 12px rgba(167, 139, 250, 0.3);
+        }
+
+        /* 吉祥物老虎區塊 */
+        .mascot-container {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mascot-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .mascot-img {
+            width: 240px;
+            height: auto;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* 內容區塊通用樣式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-family: var(--font-code);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '//';
+            color: var(--primary-accent);
+        }
+
+        /* 關於我們 About 特殊樣式 */
+        .about-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 3rem;
+        }
+
+        .about-lead {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
+            color: #e2e8f0;
+        }
+
+        .about-highlight-box {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid var(--primary-accent);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 2rem;
+        }
+
+        .about-highlight-box h3 {
+            color: var(--primary-accent);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .about-highlight-box p {
+            color: var(--text-main);
+            line-height: 1.8;
+        }
+
+        .about-highlight-box code {
+            background: rgba(0, 0, 0, 0.4);
+            color: #f472b6;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: var(--font-code);
+            font-size: 0.95rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-feature {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .about-feature i {
+            font-size: 1.8rem;
+            color: var(--primary-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-feature h4 {
+            font-size: 1.05rem;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .about-feature p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .about-footer-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary-accent);
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border-color);
+            line-height: 1.8;
+        }
+
+        /* 卡片網格 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .card:hover {
+            border-color: var(--primary-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(167, 139, 250, 0.15);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary-accent);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* 頁尾 */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: var(--font-code);
+            background: rgba(18, 18, 26, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 100px;
+            }
+
+            .hero-description {
+                margin: 0 auto 2rem auto;
+            }
+
+            .btn-group, .social-links {
+                justify-content: center;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 頂部導覽列 -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-terminal" style="color: var(--primary-accent)"></i>
+            桃高資訊社 <span class="logo-badge">第6屆</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> 首頁</a></li>
+                <li><a href="#about"><i class="fa-solid fa-circle-info"></i> 關於我們</a></li>
+                <li><a href="#courses"><i class="fa-solid fa-book-bookmark"></i> 社課教學</a></li>
+                <li><a href="#events"><i class="fa-solid fa-calendar-days"></i> 活動紀錄</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主頁 Hero 區塊 (全中文版 Home) -->
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <div class="welcome-subtitle">你好！歡迎來到</div>
+            <h1 class="hero-title">桃高資訊社 <span class="typed-word" id="typed">第6屆</span></h1>
+            <p class="hero-description">
+                歡迎來到桃高資訊社官方網站！<br>
+                我們專注於程式設計與網路爬蟲應用，帶你從零開始探索寫程式的樂趣！
+            </p>
+
+            <div class="btn-group">
+                <a href="#about" class="btn-primary"><i class="fa-solid fa-mug-hot"></i> 了解我們</a>
+            </div>
+
+            <!-- 社群連結 -->
+            <div class="social-links">
+                <a href="https://github.com" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://discord.gg" target="_blank" class="social-icon" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="social-icon" title="Line 社群"><i class="fa-solid fa-fish"></i></a>
+            </div>
+        </div>
+
+        <!-- 吉祥物老虎區塊 -->
+        <div class="mascot-container">
+            <div class="mascot-wrapper">
+                <svg class="mascot-img" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="80" fill="#FF9F43"/>
+                    <circle cx="70" cy="80" r="12" fill="white"/>
+                    <circle cx="130" cy="80" r="12" fill="white"/>
+                    <circle cx="70" cy="80" r="6" fill="#1E293B"/>
+                    <circle cx="130" cy="80" r="6" fill="#1E293B"/>
+                    <ellipse cx="100" cy="110" rx="16" ry="10" fill="#1E293B"/>
+                    <path d="M70 140 Q100 160 130 140" stroke="#1E293B" stroke-width="6" stroke-linecap="round" fill="none"/>
+                    <path d="M100 30 L100 50 M85 35 L95 45 M115 35 L105 45" stroke="#1E293B" stroke-width="5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我們 About 區塊 -->
+    <section class="container" id="about">
+        <h2 class="section-title">關於我們</h2>
+        <div class="about-card">
+            <p class="about-lead">
+                大家好，我們是桃高資訊社！<br>
+                我們的社團專注於 <strong>Python 程式設計</strong> 與 <strong>網路爬蟲應用</strong>，專為對程式設計、資料擷取與邏輯思維有興趣的同學量身打造！無論你是完全沒有經驗的初學者，還是想提升實作能力的新手，我們都會手把手帶領大家從零開始。 ～(∠・ω&lt; )⌒☆
+            </p>
+
+            <div class="about-highlight-box">
+                <h3><i class="fa-solid fa-code"></i> 扎實豐富的課程脈絡</h3>
+                <p>
+                    從最基礎的 Python 環境設定、變數與邏輯控制，到迴圈、資料結構（list/dict）與函式模組；接著更會帶大家跨入實用領域，學習網路基礎、HTML 結構，並運用 <code>Requests</code> 與 <code>BeautifulSoup</code> 進行網頁資料擷取與 CSV/JSON 儲存。最後還有爬蟲專題實作與期末成果展示，讓你完整體驗從無到有寫出專案的成就感！
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-feature">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <h4>飲料伴學 ✕ 輕鬆氛圍</h4>
+                    <p>每次課堂都有飲料陪伴你的 Coding 時光！</p>
+                </div>
+                <div class="about-feature">
+                    <i class="fa-solid fa-comments"></i>
+                    <h4>社群交流 ✕ 線上解答</h4>
+                    <p>課後在社群群組自由討論與解決難題。</p>
+                </div>
+                <div class="about-feature">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    <h4>學長輔導 ✕ 學習不孤單</h4>
+                    <p>卡關時有學長親自輔導，帶你越過難關。</p>
+                </div>
+            </div>
+
+            <div class="about-footer-text">
+                想學會用 Python 自動抓取網路資料、打造屬於自己的小工具嗎？<br>
+                快來加入我們，一起享受寫程式的樂趣吧！如有任何問題，歡迎隨時私訊我們詢問詳情唷！(╯✧✧)╯
+            </div>
+        </div>
+    </section>
+
+    <!-- 社課教學區 -->
+    <section class="container" id="courses">
+        <h2 class="section-title">社課教學主軸</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <div class="card-icon"><i class="fa-brands fa-python"></i></div>
+                <h3>Python 基礎與邏輯</h3>
+                <p>環境安裝、變數判斷、迴圈結構、List/Dict 資料結構與函式模組建立。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-spider"></i></div>
+                <h3>網路爬蟲實戰</h3>
+                <p>理解 HTTP/HTML 網路架構，掌握 Requests 與 BeautifulSoup 擷取網頁資料。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-file-csv"></i></div>
+                <h3>資料儲存與專題</h3>
+                <p>將爬取的資料匯出為 CSV/JSON，進行期末專題開發與成果展示。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 活動紀錄區 -->
+    <section class="container" id="events">
+        <h2 class="section-title">社團活動與福利</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-whiskey-glass"></i></div>
+                <h3>課堂飲料時光</h3>
+                <p>每堂課都提供好喝的飲料，邊喝邊寫 Code，享受最放鬆的學習體驗。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-users-gear"></i></div>
+                <h3>學長 1對1 解惑輔導</h3>
+                <p>遇到 Bug 跑不出來別擔心！學長親自為你拆解程式碼盲點。</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <h3>期末爬蟲成果展</h3>
+                <p>展示你自己開發的爬蟲小工具，打造能放進學習歷程檔案的豐富專案！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 Footer -->
+    <footer>
+        <p>© 2024-2026 桃高資訊社. 版權所有.</p>
+        <p style="margin-top: 6px; color: var(--primary-accent);">桃高資訊社：享受 Coding，從零開始寫出你的第一個爬蟲專案！</p>
+    </footer>
+
+    <!-- 全中文打字機動畫 JavaScript -->
+    <script>
+        const words = ["第 6 屆", "網路爬蟲", "程式設計", "資料擷取", "專題實作"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedElement = document.getElementById("typed");
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typedElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 80 : 150;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        document.addEventListener("DOMContentLoaded", typeEffect);
+    </script>
+</body>
+</html>
