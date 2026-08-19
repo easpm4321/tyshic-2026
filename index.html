@@ -240,15 +240,18 @@
         }
 
         .mascot-wrapper {
-            position: relative;
-            width: 280px;
-            height: 280px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        /* 1. 確保寬與高數值相同（正方形） */
+        width: 280px;
+        height: 280px;
+        /* 2. 設定圓形與隱藏超出邊界的部分 */
+        border-radius: 50%;
+        overflow: hidden; /* 確保圖片如果太大不會超出圓形框 */
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .mascot-wrapper:hover {
@@ -256,14 +259,12 @@
         }
 
         .mascot-img {
-            max-width: 240px;
-            max-height: 260px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            animation: float 4s ease-in-out infinite;
-            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
-            transition: all 0.4s ease;
+        /* 3. 調整圖片讓它填滿或適應圓形容器 */
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 填滿圓形區塊（若是滿版去背圖也可以用 contain） */
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+        transition: all 0.4s ease;
         }
 
         /* 手機端預設隱藏的替代 Icon 區塊 */
@@ -600,7 +601,7 @@
         <div class="mascot-container">
             <div class="mascot-wrapper" id="mascotWrapper">
                 <!-- 桌機端圖片 -->
-                <img src="https://i.ibb.co/fdH6LrLm/1000000007.png" alt="社團吉祥物" class="mascot-img" referrerpolicy="no-referrer">
+                <img src="https://github.com/user-attachments/assets/508cc194-3509-4b71-a422-d645562ee6d1" alt="社團吉祥物"class="mascot-img" referrerpolicy="no-referrer">
                 
                 <!-- 手機端科技感 Icon -->
                 <div class="mascot-mobile-alt">
