@@ -235,34 +235,35 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-width: 400px;
-            min-height: 400px;
+            min-width: 280px;
+            min-height: 280px;
         }
 
         .mascot-wrapper {
-        position: relative;
-        width: 280px;
-        height: 280px;
-        border-radius: 50%;
-        overflow: hidden; 
-        background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .mascot-wrapper:hover {
             transform: scale(1.08);
         }
 
         .mascot-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* 讓圖片依照比例完全填滿整個圓形容器 */
-        object-position: center; /* 確保圖片重點對齊在中央 */
-        transform: scale(1.08); /* 稍微微幅放大（可自由調整 1.05~1.15），能減少邊角留白 */
-        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
-        transition: all 0.4s ease;
+            max-width: 240px;
+            max-height: 260px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+            transition: all 0.4s ease;
         }
 
         /* 手機端預設隱藏的替代 Icon 區塊 */
@@ -271,16 +272,25 @@
         }
 
         /* 往下滑動時的縮小懸浮固定樣式 */
-       .mascot-wrapper.scrolled .mascot-img {
-        width: 100%;
-        height: 100%;
-        max-width: none;
-        max-height: none;
+        .mascot-wrapper.scrolled {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 110px;
+            height: 110px;
+            z-index: 999;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.45) 0%, transparent 70%);
+            filter: drop-shadow(0 6px 16px rgba(139, 92, 246, 0.4));
         }
 
         .mascot-wrapper.scrolled .mascot-img {
             max-width: 90px;
             max-height: 90px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
         }
 
         /* 內容區塊通用樣式 */
@@ -588,7 +598,8 @@
         <div class="mascot-container">
             <div class="mascot-wrapper" id="mascotWrapper">
                 <!-- 桌機端圖片 -->
-                <img src="https://github.com/user-attachments/assets/508cc194-3509-4b71-a422-d645562ee6d1" alt="社團吉祥物" class="mascot-img" referrerpolicy="no-referrer">
+                <img src="https://i.ibb.co/fdH6LrLm/1000000007.png" alt="社團吉祥物" class="mascot-img" referrerpolicy="no-referrer">
+                
                 <!-- 手機端科技感 Icon -->
                 <div class="mascot-mobile-alt">
                     <i class="fa-solid fa-robot"></i>
